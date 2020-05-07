@@ -36,6 +36,7 @@ public class TestCloningStudents {
         this.student.setFirstname("Jinping");
         this.student.setSurname("Xi");
         this.student.setDob(LocalDate.now());
+        this.student.setId("01");
     }
 
 

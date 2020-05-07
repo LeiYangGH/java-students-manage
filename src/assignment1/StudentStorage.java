@@ -1,20 +1,25 @@
 package assignment1;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class StudentStorage {
-    void save(Collection<Student> students, File file) throws IOException {
+    public void save(Collection<Student> students, File file) throws IOException {
         this.save(students, file.getName());
     }
 
-    void save(Collection<Student> students, String fileName) throws IOException {
+    public void save(Collection<Student> students, String fileName) throws IOException {
         saveObject(students.toArray(), fileName);
     }
 
-    Collection<Student> load(File file) throws IOException {
+    public Collection<Student> load(File file) throws IOException {
         try {
-            return (Collection<Student>) loadObject(file.getName());
+            Object o = loadObject(file.getName());
+            Object[] objects = (Object[])o;
+            ArrayList<Student> list = new ArrayList(Arrays.asList(objects));
+            return list;
         } catch (ClassNotFoundException e) {
             return null;
         }
