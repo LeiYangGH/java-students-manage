@@ -1,9 +1,10 @@
 package assignment1;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Student {
+public class Student implements Serializable {
     private String surname;
     private String firstname;
     private String id;

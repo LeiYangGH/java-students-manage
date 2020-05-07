@@ -1,8 +1,9 @@
 package assignment1;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Address {
+public class Address implements Serializable {
     private String town;
     private String street;
     private String postCode;
