@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Student implements Serializable {
+public class Student implements Cloneable, Serializable {
     private String surname;
     private String firstname;
     private String id;
@@ -74,7 +74,7 @@ public class Student implements Serializable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Student clone() throws CloneNotSupportedException {
         Student result = (Student) super.clone();
         if (this.address != null) {
             result.address = (Address) this.address.clone();

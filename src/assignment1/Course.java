@@ -3,7 +3,7 @@ package assignment1;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Course implements Serializable {
+public class Course implements Cloneable, Serializable {
     private String number;
     private String name;
 

@@ -3,7 +3,7 @@ package assignment1;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Address implements Serializable {
+public class Address implements Cloneable, Serializable {
     private String town;
     private String street;
     private String postCode;
