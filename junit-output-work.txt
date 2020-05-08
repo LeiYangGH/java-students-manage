@@ -1,0 +1,12 @@
+C:\G\java-students-manage\out>C:\jdk-11\bin\java.exe -ea -javaagent:C:\IDEA\lib\intellij-coverage-agent-1.0.508.jar=C:\Users\YANG.LEI\AppData\Local\Temp\coverageargs -Didea.test.cyclic.buffer.size=1048576 -javaagent:C:\IDEA\lib\idea_rt.jar=52696:C:\IDEA\bin -Dfile.encoding=GBK -classpath C:\IDEA\lib\idea_rt.jar;C:\IDEA\plugins\junit\lib\junit5-rt.jar;C:\IDEA\plugins\junit\lib\junit-rt.jar;C:\G\java-students-manage\out\test\java-students-manage;C:\G\java-students-manage\out\production\java-students-manage;C:\G\java-students-manage\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\G\java-students-manage\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\G\java-students-manage\junit\jupiter\junit-jupiter-params\5.5.2\junit-jupiter-params-5.5.2.jar;C:\G\java-students-manage\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\G\java-students-manage\junit\jupiter\junit-jupiter\5.5.2\junit-jupiter-5.5.2.jar;C:\G\java-students-manage\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;C:\G\java-students-manage\junit\platform\junit-platform-launcher\1.6.0\junit-platform-launcher-1.6.0.jar com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit5 assignment1Tests.TestCloningStudents
+---- IntelliJ IDEA coverage runner ----
+sampling ...
+include patterns:
+assignment1Tests\..*
+exclude patterns:
+##teamcity[enteredTheMatrix]
+##teamcity[suiteTreeStarted id='|[engine:junit-jupiter|]/|[class:assignment1Tests.TestCloningStudents|]' name='TestCloningStudents' nodeId='|[engine:junit-jupiter|]/|[class:assignment1Tests.TestCloningStudents|]' parentNodeId='0' locationHint='java:suite://assignment1Tests.TestCloningStudents']
+##teamcity[suiteTreeNode  id='|[engine:junit-jupiter|]/|[class:assignment1Tests.TestCloningStudents|]/|[method:testClone()|]' name='testClone()' nodeId='|[engine:junit-jupiter|]/|[class:assignment1Tests.TestCloningStudents|]/|[method:testClone()|]' parentNodeId='|[engine:junit-jupiter|]/|[class:assignment1Tests.TestCloningStudents|]' locationHint='java:test://assignment1Tests.TestCloningStudents/testClone' metainfo='']
+##teamcity[suiteTreeEnded id='|[engine:junit-jupiter|]/|[class:assignment1Tests.TestCloningStudents|]' name='TestCloningStudents' nodeId='|[engine:junit-jupiter|]/|[class:assignment1Tests.TestCloningStudents|]' parentNodeId='0']
+##teamcity[treeEnded]
+Class transformation time: 0.0697158s for 603 classes or 1.1561492537313432E-4s per class
