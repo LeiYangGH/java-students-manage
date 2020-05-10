@@ -5,14 +5,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentsListEditor extends JPanel {
 
     private List<Student> lstStudents = new ArrayList<Student>();
+    Student currentDisplayingStudent;
     StudentStorage storage = new StudentStorage();
+    String studentsFile = "studentsFile.dat";
+
     private JButton btnLoad;
     private JButton btnSave;
     private JButton btnAdd;
@@ -32,7 +37,6 @@ public class StudentsListEditor extends JPanel {
     public StudentsListEditor() {
         //construct preComponents
         String[] jcomp4Items = {"Item 1", "Item 2", "Item 3"};
-        String studentsFile = "studentsFile.dat";
 
         //construct components
         btnLoad = new JButton("Load");
@@ -57,17 +61,24 @@ public class StudentsListEditor extends JPanel {
 
         //add components
 
-//        btnLoad.addActionListener(
-//                new ActionListener() {
-//                    @Override
-//                    public void actionPerformed(ActionEvent e) {
-//                        txtSurname.setText("txtSurname");
-//                        txtFirstname.setText("txtFirstname");
-//                        txtId.setText("id");
-//                        txtDob.setText("dob");
-//                    }
-//                }
-//        );
+        btnLoad.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            lstStudents = new ArrayList(storage.load(new File(studentsFile)));
+                            if (lstStudents.size() > 0) {
+                                currentDisplayingStudent = lstStudents.get(0);
+                                DisplayStudent(currentDisplayingStudent);
+//                                DisplayAllStudentsList();
+
+                            }
+                        } catch (IOException ioe) {
+                            ioe.printStackTrace();
+                        }
+                    }
+                }
+        );
 
         add(btnLoad);
 
@@ -85,6 +96,30 @@ public class StudentsListEditor extends JPanel {
         );
 
         add(btnSave);
+
+        btnAdd.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //save current student first
+                        Student student = new Student();
+                        student.setId(txtId.getText());
+                        student.setFirstname(txtFirstname.getText());
+                        student.setSurname(txtSurname.getText());
+                        student.setDob(LocalDate.now());//TODO: convert from text
+                        lstStudents.add(student);
+
+                        //set default values, to indicate adding
+                        txtFirstname.setText("xxx");
+                        txtSurname.setText("yyy");
+                        txtDob.setText(String.valueOf(LocalDate.now()));
+                        txtId.setText("00");
+
+
+                    }
+                }
+        );
+
         add(btnAdd);
         add(lstStuCtl);
         add(jcomp5);
@@ -97,6 +132,28 @@ public class StudentsListEditor extends JPanel {
         add(txtId);
         add(txtDob);
         add(jcomp14);
+
+        btnClone.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (currentDisplayingStudent == null)
+                            return;
+                        try {
+                            Student clonedStudent = currentDisplayingStudent.clone();
+                            lstStudents.add(clonedStudent);
+                            currentDisplayingStudent = clonedStudent;
+                            DisplayStudent(currentDisplayingStudent);
+                        } catch (CloneNotSupportedException ee) {
+                            ee.printStackTrace();
+                        }
+
+
+
+                    }
+                }
+        );
+
         add(btnClone);
 
         //set component bounds (only needed by Absolute Positioning)
@@ -117,7 +174,21 @@ public class StudentsListEditor extends JPanel {
         btnClone.setBounds(610, 25, 110, 35);
     }
 
+    public void DisplayStudent(Student student) {
+        txtFirstname.setText("xxx");
+        txtSurname.setText("yyy");
+        txtDob.setText(String.valueOf(LocalDate.now()));
+        txtId.setText("00");
+    }
 
+    //TODO: show students in the list, and add select change event listener, to display
+    public void DisplayAllStudentsList() {
+        ListModel jListModel =  new DefaultComboBoxModel(new String[] { "张三", "李四" });  //数据
+//        for(Student student:lstStudents){
+//            lstStuCtl..add(student.toString());
+//        }
+        lstStuCtl.setModel(jListModel);
+    }
     public static void main(String[] args) {
         JFrame frame = new JFrame("StudentsListEditor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
